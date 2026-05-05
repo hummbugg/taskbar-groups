@@ -1,4 +1,4 @@
-﻿using client.Classes;
+using client.Classes;
 using client.User_controls;
 using System;
 using System.Drawing;
@@ -82,9 +82,12 @@ namespace client.Forms
 
         private void cmdAddGroup_Click(object sender, EventArgs e)
         {
-            frmGroup newGroup = new frmGroup(this);
-            newGroup.Show();
-            newGroup.BringToFront();
+            // CHANGED: Open the New Group form as a modal dialog.
+            // This prevents multiple hidden New Group windows from being created.
+            using (frmGroup newGroup = new frmGroup(this))
+            {
+                newGroup.ShowDialog(this);
+            }
         }
 
         private void pnlAddGroup_MouseLeave(object sender, EventArgs e)
