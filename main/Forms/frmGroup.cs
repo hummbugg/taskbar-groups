@@ -352,15 +352,23 @@ namespace client.Forms
 
         private void handleIcon(String file, String imageExtension)
         {
-            // Checks if the files being added/dropped are an .exe or .lnk in which tye icons need to be extracted/processed
+            // Checks if the files being added/dropped are an .exe or .lnk in which type icons need to be extracted/processed
             if (specialImageExt.Contains(imageExtension))
             {
                 if (imageExtension == ".lnk")
                 {
                     cmdAddGroupIcon.BackgroundImage = handleLnkExt(file);
                 }
+                // ADDED: Load the actual .ico image selected by the user.
+                // Icon.ExtractAssociatedIcon(file) returns the Windows file-type icon for .ico files,
+                // which can display as a generic document/text icon instead of the icon contents.
+                else if (imageExtension == ".ico")
+                {
+                    cmdAddGroupIcon.BackgroundImage = new Bitmap(file);
+                }
                 else
                 {
+                    //exe
                     cmdAddGroupIcon.BackgroundImage = Icon.ExtractAssociatedIcon(file).ToBitmap();
                 }
             }
