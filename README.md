@@ -19,27 +19,46 @@
 </p>
 <br />
 
-[![-----------------------------------------------------](https://user-images.githubusercontent.com/56088716/103312593-8a37ff80-49eb-11eb-91d3-75488e21a0a9.png)  ](#table-of-contents)
+# Taskbar Groups – Unofficial Maintained Build
 
-## 📖 Table of Contents
+This is an unofficial maintained fork of the original Taskbar Groups project by **tjackenpacken**.
 
-* [➤ Installation](#-how-to-download-taskbar-groups)
-* [➤ Creating your first group](#%EF%B8%8F-creating-your-first-group)
-* [➤ Screen/Window Documentation](#%EF%B8%8F-screenwindow-documentation)
-	* [Main Screen](#main-screen-)
-	* [Group Creation Screen](#group-creation-screen-)
-	* [Extra Notes](#extra-notes-)
-* [➤ Image/Icon  Caching](#-imageicon-caching)
-* [➤ Program Shortcuts](#%EF%B8%8F-program-shortcuts)
-* [➤ File/Folder Structure](#-folder-structure-documentation)
-* [➤ License](#-License)
+Original project:  
+https://github.com/tjackenpacken/taskbar-groups
 
- [![-----------------------------------------------------](https://user-images.githubusercontent.com/56088716/103312593-8a37ff80-49eb-11eb-91d3-75488e21a0a9.png)](#how-to-download-taskbar-groups)
+Maintained fork:  
+https://github.com/hummbugg/taskbar-groups
 
-##  🔽 How to download Taskbar groups:
-    1. Download the .zip-file from the latest release (link above)
-    2. Unpack the .zip-file at a desired location
-    3. Run the TaskbarGroups.exe file in the extracted folder
+---
+
+## 📦 Download Ready-to-Run Build
+
+Download the latest compiled release here:
+
+https://github.com/hummbugg/taskbar-groups/releases
+
+No Visual Studio is required to use the release ZIP.
+
+---
+
+## ⚠️ Windows Security Notice (Important)
+
+Because this application is distributed as a ZIP downloaded from the internet, Windows may block the files.
+
+### Recommended:
+
+1. Right-click the downloaded ZIP file  
+2. Click **Properties**  
+3. Check **Unblock**  
+4. Click **Apply**  
+5. Extract the ZIP  
+6. Run `TaskbarGroups.exe`
+
+### If already extracted:
+
+```powershell
+Get-ChildItem -Path "C:\Path\To\TaskbarGroups" -Recurse -File | Unblock-File
+```
 
  [ ![-----------------------------------------------------](https://user-images.githubusercontent.com/56088716/103312593-8a37ff80-49eb-11eb-91d3-75488e21a0a9.png)](#creating-your-first-group)
 ## 🛠️ Creating your first group
@@ -56,10 +75,10 @@
 ## 🖥️ Screen/Window Documentation
  Below will be some documentation for each of the screens with explaining the functionality of each of the components.
 #### Main screen [](#main-screen)
-![Group overview screen](https://user-images.githubusercontent.com/56088716/103317856-81025f00-49fa-11eb-907b-99623babf315.PNG)Here is the main group configuration screen. You get here by executing the TaskbarGroups.exe file. Here you can add groups and see what groups you have created.
+![Group overview screen](images/taskbar_groups.jpg)Here is the main group configuration screen. You get here by executing the TaskbarGroups.exe file. Here you can add groups and see what groups you have created.
 
 #### Group Creation Screen [](#group-creation)
-![Group creation screen](https://user-images.githubusercontent.com/56088716/103452967-36efd680-4ca3-11eb-8244-2aed6fc5af97.PNG)  
+![Group creation screen](images/create_group.jpg)  
 Here is the group creation screen. Here you can start customizing and configuring your group. Here is the quick rundown of the features of this window.
 
 **Name the new group** - You can insert any group name (no special characters) that you would like with a maximum character limit of 49 characters in total.
