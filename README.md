@@ -1,21 +1,21 @@
 
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/tjackenpacken/taskbar-groups/master/main/Icon.ico" alt="Logo" width="150" height="150" />
+  <img src="https://raw.githubusercontent.com/hummbugg/taskbar-groups/master/main/Icon.ico" alt="Logo" width="150" height="150" />
 </p>
 <h1 align="center">Taskbar Groups</h1>
 <p align="center">
-<a href="https://github.com/tjackenpacken/taskbar-groups/issues"><img alt="Issues open" src="https://img.shields.io/github/issues-raw/tjackenpacken/taskbar-groups?style=for-the-badge" height="20"/></a>
-<a href="https://github.com/tjackenpacken/taskbar-groups/"><img alt="Last commit" src="https://img.shields.io/github/last-commit/tjackenpacken/taskbar-groups?style=for-the-badge" height="20"/></a>
-<a href="https://github.com/tjackenpacken/taskbar-groups/releases"><img alt="Latest version" src="https://img.shields.io/github/v/tag/tjackenpacken/taskbar-groups?label=Latest%20Version&style=for-the-badge" height="20"/></a>
-<a href="https://github.com/tjackenpacken/taskbar-groups/blob/master/LICENSE"><img alt="Latest version" src="https://img.shields.io/github/license/tjackenpacken/taskbar-groups?style=for-the-badge" height="20"/></a>
+<a href="https://github.com/hummbugg/taskbar-groups/issues"><img alt="Issues open" src="https://img.shields.io/github/issues-raw/hummbugg/taskbar-groups?style=for-the-badge" height="20"/></a>
+<a href="https://github.com/hummbugg/taskbar-groups/"><img alt="Last commit" src="https://img.shields.io/github/last-commit/hummbugg/taskbar-groups?style=for-the-badge" height="20"/></a>
+<a href="https://github.com/hummbugg/taskbar-groups/releases"><img alt="Latest version" src="https://img.shields.io/github/v/tag/hummbugg/taskbar-groups?label=Latest%20Version&style=for-the-badge" height="20"/></a>
+<a href="https://github.com/hummbugg/taskbar-groups/blob/master/LICENSE"><img alt="Latest version" src="https://img.shields.io/github/license/hummbugg/taskbar-groups?style=for-the-badge" height="20"/></a>
 	
 </p>
 <p align="center">
   <b>Taskbar groups is a lightweight utility for Windows that lets the users create groups of shortcuts in the taskbar.</b>
   
 <p align="center">
-	<a href="https://github.com/tjackenpacken/taskbar-groups/releases">Download & Release Notes</a>
+	<a href="https://github.com/hummbugg/taskbar-groups/releases">Download & Release Notes</a>
 </p>
 <br />
 
