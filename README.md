@@ -75,10 +75,10 @@ Get-ChildItem -Path "C:\Path\To\TaskbarGroups" -Recurse -File | Unblock-File
 ## 🖥️ Screen/Window Documentation
  Below will be some documentation for each of the screens with explaining the functionality of each of the components.
 #### Main screen [](#main-screen)
-![Group overview screen](images/taskbar_groups.jpg)Here is the main group configuration screen. You get here by executing the TaskbarGroups.exe file. Here you can add groups and see what groups you have created.
+![Group overview screen](taskbar_groups.jpg)Here is the main group configuration screen. You get here by executing the TaskbarGroups.exe file. Here you can add groups and see what groups you have created.
 
 #### Group Creation Screen [](#group-creation)
-![Group creation screen](images/create_group.jpg)  
+![Group creation screen](create_group.jpg)  
 Here is the group creation screen. Here you can start customizing and configuring your group. Here is the quick rundown of the features of this window.
 
 **Name the new group** - You can insert any group name (no special characters) that you would like with a maximum character limit of 49 characters in total.
