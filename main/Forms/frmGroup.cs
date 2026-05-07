@@ -1,4 +1,4 @@
-﻿using ChinhDo.Transactions;
+using ChinhDo.Transactions;
 using client.Classes;
 using client.User_controls;
 using IWshRuntimeLibrary;
@@ -31,6 +31,23 @@ namespace client.Forms
 
         private List<ProgramShortcut> shortcutChanged = new List<ProgramShortcut>();
 
+        // ADDED: File used to persist last selected icon directory across sessions.
+        private static string LastIconDirectoryFile
+        {
+            get
+            {
+                return Path.Combine(MainPath.path, "config", "last_icon_directory.txt");
+            }
+        }
+
+        // ADDED: File used to persist last selected shortcut directory across sessions.
+        private static string LastShortcutDirectoryFile
+        {
+            get
+            {
+                return Path.Combine(MainPath.path, "config", "last_shortcut_directory.txt");
+            }
+        }
 
         //--------------------------------------
         // CTOR AND LOAD
@@ -43,6 +60,15 @@ namespace client.Forms
             System.Runtime.ProfileOptimization.StartProfile("frmGroup.Profile");
 
             InitializeComponent();
+            // ADDED: Allow ESC key to close the dialog like a standard modal.
+            this.CancelButton = cmdExit;
+
+            // ADDED: Set dialog to fixed size for consistent modal behavior.
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            // OPTIONAL: Prevent resizing via dragging edges completely.
+            this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
             // Setting default category properties
             newExt = imageExt.Concat(specialImageExt).ToArray();
@@ -155,7 +181,8 @@ namespace client.Forms
 
             OpenFileDialog openFileDialog = new OpenFileDialog // ask user to select exe file
             {
-                InitialDirectory = @"C:\ProgramData\Microsoft\Windows\Start Menu\Programs",
+                // CHANGED: Use last-used shortcut directory instead of always defaulting to Start Menu\Programs.
+                InitialDirectory = GetLastShortcutDirectory(),
                 Title = "Create New Shortcut",
                 CheckFileExists = true,
                 CheckPathExists = true,
@@ -169,6 +196,12 @@ namespace client.Forms
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
+                // ADDED: Persist the last used shortcut directory for future dialog opens.
+                if (openFileDialog.FileNames.Length > 0)
+                {
+                    SaveLastShortcutDirectory(openFileDialog.FileNames[0]);
+                }
+
                 foreach (String file in openFileDialog.FileNames)
                 {
                     addShortcut(file);
@@ -313,7 +346,8 @@ namespace client.Forms
 
             OpenFileDialog openFileDialog = new OpenFileDialog  // ask user to select img as group icon
             {
-                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures),
+                // CHANGED: Use last-used directory instead of always defaulting to Pictures.
+                InitialDirectory = GetLastIconDirectory(),
                 Title = "Select Group Icon",
                 CheckFileExists = true,
                 CheckPathExists = true,
@@ -331,6 +365,10 @@ namespace client.Forms
                 String imageExtension = Path.GetExtension(openFileDialog.FileName).ToLower();
 
                 handleIcon(openFileDialog.FileName, imageExtension);
+
+                // ADDED: Persist the last used directory for future dialog opens.
+                SaveLastIconDirectory(openFileDialog.FileName);
+
             }
         }
 
@@ -377,6 +415,81 @@ namespace client.Forms
                 cmdAddGroupIcon.BackgroundImage = Image.FromFile(file);
             }
             lblAddGroupIcon.Text = "Change group icon";
+        }
+
+
+        // ADDED: Gets the last folder used for selecting group icons.
+        private string GetLastIconDirectory()
+        {
+            try
+            {
+                if (System.IO.File.Exists(LastIconDirectoryFile))
+                {
+                    string savedPath = System.IO.File.ReadAllText(LastIconDirectoryFile).Trim();
+
+                    if (Directory.Exists(savedPath))
+                        return savedPath;
+                }
+            }
+            catch
+            {
+                // Ignore errors and fall back to default
+            }
+
+            return Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+        }
+
+        // ADDED: Saves the last folder used for selecting group icons.
+        private void SaveLastIconDirectory(string filePath)
+        {
+            try
+            {
+                string directory = Path.GetDirectoryName(filePath);
+
+                if (Directory.Exists(directory))
+                    System.IO.File.WriteAllText(LastIconDirectoryFile, directory);
+            }
+            catch
+            {
+                // Ignore save errors (non-critical)
+            }
+        }
+
+        // ADDED: Gets the last folder used for selecting program shortcuts.
+        private string GetLastShortcutDirectory()
+        {
+            try
+            {
+                if (System.IO.File.Exists(LastShortcutDirectoryFile))
+                {
+                    string savedPath = System.IO.File.ReadAllText(LastShortcutDirectoryFile).Trim();
+
+                    if (Directory.Exists(savedPath))
+                        return savedPath;
+                }
+            }
+            catch
+            {
+                // Ignore errors and fall back to default
+            }
+
+            return @"C:\ProgramData\Microsoft\Windows\Start Menu\Programs";
+        }
+
+        // ADDED: Saves the last folder used for selecting program shortcuts.
+        private void SaveLastShortcutDirectory(string filePath)
+        {
+            try
+            {
+                string directory = Path.GetDirectoryName(filePath);
+
+                if (Directory.Exists(directory))
+                    System.IO.File.WriteAllText(LastShortcutDirectoryFile, directory);
+            }
+            catch
+            {
+                // Ignore save errors (non-critical)
+            }
         }
 
         // Handle returning images of icon files (.lnk)
@@ -476,9 +589,9 @@ namespace client.Forms
         // Exit editor
         private void cmdExit_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            this.Dispose();
-            Client.Reload(); //flush and reload category panels
+            // CHANGED: Modal Cancel should simply close the dialog.
+            // Do not Hide/Dispose/Reload here because ShowDialog() and the using block handle cleanup.
+            this.Close();
         }
 
         // Save group
