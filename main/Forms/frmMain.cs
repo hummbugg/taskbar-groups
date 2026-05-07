@@ -1,4 +1,4 @@
-﻿using client.Classes;
+using client.Classes;
 using client.User_controls;
 using System;
 using System.Collections.Generic;
@@ -7,6 +7,8 @@ using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;  // ADDED: Used to bring existing window to the front.
+using System.Threading;                // ADDED: Used for single-instance mutex.
 
 namespace client
 {
