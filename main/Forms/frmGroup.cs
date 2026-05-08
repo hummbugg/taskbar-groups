@@ -11,7 +11,9 @@ using System.Text.RegularExpressions;
 using System.Transactions;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Shell;
-using Microsoft.WindowsAPICodePack.Dialogs; 
+using Microsoft.WindowsAPICodePack.Dialogs;
+using System.Runtime.InteropServices; // ADDED: Used for ExtractIconEx indexed icon extraction.
+
 
 namespace client.Forms
 {
@@ -48,7 +50,22 @@ namespace client.Forms
                 return Path.Combine(MainPath.path, "config", "last_shortcut_directory.txt");
             }
         }
+        
+        // ADDED: Extracts icons by index from EXE/DLL/ICO resources.
+        // Needed for shortcuts whose IconLocation includes an index, such as "SomeIcons.exe,1".
+        [DllImport("shell32.dll", CharSet = CharSet.Auto)]
+        private static extern uint ExtractIconEx(
+            string szFileName,
+            int nIconIndex,
+            IntPtr[] phiconLarge,
+            IntPtr[] phiconSmall,
+            uint nIcons
+        );
 
+        // ADDED: Releases icon handles returned by ExtractIconEx.
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern bool DestroyIcon(IntPtr hIcon);
+        
         //--------------------------------------
         // CTOR AND LOAD
         //--------------------------------------
@@ -492,26 +509,85 @@ namespace client.Forms
             }
         }
 
+        // ADDED: Extracts an icon from a file using an explicit icon index.
+        // This fixes shortcuts like Camtasia where IconLocation points to "CamtasiaIcons.exe,1".
+        private static Bitmap ExtractIconByIndex(string iconPath, int iconIndex)
+        {
+            IntPtr[] largeIcons = new IntPtr[1];
+            IntPtr[] smallIcons = new IntPtr[1];
+
+            uint extractedCount = ExtractIconEx(iconPath, iconIndex, largeIcons, smallIcons, 1);
+
+            try
+            {
+                if (extractedCount > 0 && largeIcons[0] != IntPtr.Zero)
+                {
+                    using (Icon icon = (Icon)Icon.FromHandle(largeIcons[0]).Clone())
+                    {
+                        return icon.ToBitmap();
+                    }
+                }
+
+                if (extractedCount > 0 && smallIcons[0] != IntPtr.Zero)
+                {
+                    using (Icon icon = (Icon)Icon.FromHandle(smallIcons[0]).Clone())
+                    {
+                        return icon.ToBitmap();
+                    }
+                }
+
+                return null;
+            }
+            finally
+            {
+                if (largeIcons[0] != IntPtr.Zero)
+                    DestroyIcon(largeIcons[0]);
+
+                if (smallIcons[0] != IntPtr.Zero)
+                    DestroyIcon(smallIcons[0]);
+            }
+        }
+
         // Handle returning images of icon files (.lnk)
         public static Bitmap handleLnkExt(String file)
         {
             IWshShortcut lnkIcon = (IWshShortcut)new WshShell().CreateShortcut(file);
             String[] icLocation = lnkIcon.IconLocation.Split(',');
+
+            // ADDED: Resolve shortcut IconLocation path and index separately.
+            // Some shortcuts store the correct icon in an indexed resource file, e.g. "CamtasiaIcons.exe,1".
+            string iconPath = "";
+            int iconIndex = 0;
+
+            if (icLocation.Length > 0)
+                iconPath = Environment.ExpandEnvironmentVariables(icLocation[0]);
+
+            if (icLocation.Length > 1)
+                int.TryParse(icLocation[1], out iconIndex);
+
             // Check if iconLocation exists to get an .ico from; if not then take the image from the .exe it is referring to
             // Checks for link iconLocations as those are used by some applications
-            if (icLocation[0] != "" && !lnkIcon.IconLocation.Contains("http"))
+            if (iconPath != "" && !lnkIcon.IconLocation.Contains("http") && System.IO.File.Exists(iconPath))
             {
-                return Icon.ExtractAssociatedIcon(Path.GetFullPath(Environment.ExpandEnvironmentVariables(icLocation[0]))).ToBitmap();
+                // CHANGED: Extract icon using IconLocation index instead of ignoring the index.
+                // Fixes shortcuts such as Camtasia where the desired icon is not index 0.
+                Bitmap indexedIcon = ExtractIconByIndex(Path.GetFullPath(iconPath), iconIndex);
+
+                if (indexedIcon != null)
+                    return indexedIcon;
+
+                // ADDED: Fallback to original behavior if indexed extraction fails.
+                return Icon.ExtractAssociatedIcon(Path.GetFullPath(iconPath)).ToBitmap();
             }
             else if (icLocation[0] == "" && lnkIcon.TargetPath == "")
             {
                 return handleWindowsApp.getWindowsAppIcon(file);
-            } else
+            }
+            else
             {
                 return Icon.ExtractAssociatedIcon(Path.GetFullPath(Environment.ExpandEnvironmentVariables(lnkIcon.TargetPath))).ToBitmap();
             }
         }
-
 
         public static String handleExtName(String file)
         {
