@@ -71,6 +71,16 @@ Get-ChildItem -Path "C:\Path\To\TaskbarGroups" -Recurse -File | Unblock-File
     enter image description here5. Left click on the group
     6. In the folder that opens up, right click on the highlighted shortcut
     7. Select "Pin to taskbar"
+
+ ## Runtime Requirement
+
+Taskbar Groups requires Microsoft .NET Framework 4.7.2 or later.
+
+Most modern Windows systems already include a compatible .NET Framework version.
+If the application does not start, install the Microsoft .NET Framework 4.7.2 Runtime:
+
+https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net472-web-installer
+ 
  [![-----------------------------------------------------](https://user-images.githubusercontent.com/56088716/103312593-8a37ff80-49eb-11eb-91d3-75488e21a0a9.png)](#screenwindow-documentation)
 ## 🖥️ Screen/Window Documentation
  Below will be some documentation for each of the screens with explaining the functionality of each of the components.
