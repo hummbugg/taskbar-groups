@@ -60,6 +60,21 @@ Because this application is distributed as a ZIP downloaded from the internet, W
 Get-ChildItem -Path "C:\Path\To\TaskbarGroups" -Recurse -File | Unblock-File
 ```
 
+[![-----------------------------------------------------](https://user-images.githubusercontent.com/56088716/103312593-8a37ff80-49eb-11eb-91d3-75488e21a0a9.png)](#demo-video)
+
+## 🎬 Demo Video
+
+<p align="center">
+  <a href="https://youtu.be/WtBsh_ITvuQ">
+    <img src="taskbar_groups_video_thumbnail.jpg" alt="Taskbar Groups Demo Video" width="800">
+  </a>
+</p>
+
+<p align="center">
+  Click the thumbnail above to watch the Taskbar Groups v1.1.0-unofficial demo video on YouTube.
+</p>
+
+
  [ ![-----------------------------------------------------](https://user-images.githubusercontent.com/56088716/103312593-8a37ff80-49eb-11eb-91d3-75488e21a0a9.png)](#creating-your-first-group)
 ## 🛠️ Creating your first group
     1. Press on the "Add taskbar group"
