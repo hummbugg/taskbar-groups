@@ -68,6 +68,9 @@ Get-ChildItem -Path "C:\Path\To\TaskbarGroups" -Recurse -File | Unblock-File
 
 Then run TaskbarGroups.exe again.
 
+Demo Video
+-----------
+A demonstration video for Taskbar Groups v1.1.0-unofficial is available on YouTube:
 
 Usage Tips
 ----------
