@@ -38,6 +38,16 @@ Installation
 1. Extract all files from the ZIP to a folder of your choice.
 2. Run TaskbarGroups.exe
 
+Runtime Requirement
+------------
+
+Taskbar Groups requires Microsoft .NET Framework 4.7.2 or later.
+
+Most modern Windows systems already include a compatible .NET Framework version.
+If the application does not start, install the Microsoft .NET Framework 4.7.2 Runtime:
+
+https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net472-web-installer
+
 
 IMPORTANT – Windows Security Warning
 -----------------------------------
