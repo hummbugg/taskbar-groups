@@ -81,7 +81,11 @@ namespace client
             {
                 // Sets the AppUserModelID to tjackenpacken.taskbarGroup.menu.groupName
                 // Distinguishes each shortcut process from one another to prevent them from stacking with the main application
-                SetCurrentProcessExplicitAppUserModelID("tjackenpacken.taskbarGroup.menu."+ arguments[1]);
+                //SetCurrentProcessExplicitAppUserModelID("tjackenpacken.taskbarGroup.menu."+ arguments[1]);
+
+                // CHANGED: Use hummbugg AppUserModelID for maintained fork.
+                SetCurrentProcessExplicitAppUserModelID("hummbugg.taskbarGroup.menu." + arguments[1]);
+
 
                 Application.Run(new frmMain(arguments[1], cursorX, cursorY));
 
@@ -114,7 +118,9 @@ namespace client
                     }
 
                     // See comment above
-                    SetCurrentProcessExplicitAppUserModelID("tjackenpacken.taskbarGroup.main");
+                    //SetCurrentProcessExplicitAppUserModelID("tjackenpacken.taskbarGroup.main");
+                    // CHANGED: Use hummbugg AppUserModelID for maintained fork.
+                    SetCurrentProcessExplicitAppUserModelID("hummbugg.taskbarGroup.main");
                     Application.Run(new frmClient());
                 }
             }

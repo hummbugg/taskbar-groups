@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -50,15 +50,17 @@ namespace client.User_controls
         {
             if (Psc.isWindowsApp)
             {
-                Process p = new Process() {StartInfo = new ProcessStartInfo() { UseShellExecute = true, FileName = $@"shell:appsFolder\{Psc.FilePath}" }};
+                Process p = new Process() { StartInfo = new ProcessStartInfo() { UseShellExecute = true, FileName = $@"shell:appsFolder\{Psc.FilePath}" } };
                 p.Start();
-            } else
+            }
+            else
             {
-                if(Path.GetExtension(Psc.FilePath).ToLower() == ".lnk" && Psc.FilePath == MainPath.exeString)
+                if (Path.GetExtension(Psc.FilePath).ToLower() == ".lnk" && Psc.FilePath == MainPath.exeString)
 
                 {
                     MotherForm.OpenFile(Psc.Arguments, Psc.FilePath, MainPath.path);
-                } else
+                }
+                else
                 {
                     MotherForm.OpenFile(Psc.Arguments, Psc.FilePath, Psc.WorkingDirectory);
                 }
