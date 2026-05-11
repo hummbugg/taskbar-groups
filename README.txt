@@ -71,6 +71,7 @@ Then run TaskbarGroups.exe again.
 Demo Video
 -----------
 A demonstration video for Taskbar Groups v1.1.0-unofficial is available on YouTube:
+https://youtu.be/TzaTYnm7Ua8
 
 Usage Tips
 ----------
