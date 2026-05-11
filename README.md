@@ -65,7 +65,7 @@ Get-ChildItem -Path "C:\Path\To\TaskbarGroups" -Recurse -File | Unblock-File
 ## 🎬 Demo Video
 
 <p align="center">
-  <a href="https://youtu.be/WtBsh_ITvuQ" target="_blank" rel="noopener noreferrer">
+  <a href="https://youtu.be/TzaTYnm7Ua8" target="_blank" rel="noopener noreferrer">
     <img src="taskbar_groups_video_thumbnail.jpg" alt="Taskbar Groups Demo Video" width="800">
   </a>
 </p>
