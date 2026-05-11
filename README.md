@@ -33,9 +33,14 @@ https://github.com/hummbugg/taskbar-groups
 
 ## 📦 Download Ready-to-Run Build
 
-Download the latest compiled release here:
+Download the latest ready-to-run build here:
 
-https://github.com/hummbugg/taskbar-groups/releases
+https://github.com/hummbugg/taskbar-groups/releases/latest
+
+After opening the release page:
+1. Scroll down to **Assets**
+2. Download:
+   `TaskbarGroups_v1.1.0-unofficial-hummbugg.zip`
 
 No Visual Studio is required to use the release ZIP.
 
