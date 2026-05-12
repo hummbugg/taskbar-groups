@@ -88,9 +88,6 @@ Get-ChildItem -Path "C:\Path\To\TaskbarGroups" -Recurse -File | Unblock-File
     7. Select "Pin to taskbar"
 
  ## Runtime Requirement
-
-Runtime Requirement
--------------------
 Taskbar Groups targets Microsoft .NET Framework 4.7.2.
 
 Windows 11 normally already includes a newer compatible .NET Framework 4.x runtime, so no separate runtime installation should be needed.
