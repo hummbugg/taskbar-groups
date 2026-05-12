@@ -89,13 +89,16 @@ Get-ChildItem -Path "C:\Path\To\TaskbarGroups" -Recurse -File | Unblock-File
 
  ## Runtime Requirement
 
-Taskbar Groups requires Microsoft .NET Framework 4.7.2 or later.
+Runtime Requirement
+-------------------
+Taskbar Groups targets Microsoft .NET Framework 4.7.2.
 
-Most modern Windows systems already include a compatible .NET Framework version.
-If the application does not start, install the Microsoft .NET Framework 4.7.2 Runtime:
+Windows 11 normally already includes a newer compatible .NET Framework 4.x runtime, so no separate runtime installation should be needed.
+
+If you are using an older or unsupported version of Windows and the app does not start, install the Microsoft .NET Framework 4.7.2 Runtime:
 
 https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net472-web-installer
- 
+
  [![-----------------------------------------------------](https://user-images.githubusercontent.com/56088716/103312593-8a37ff80-49eb-11eb-91d3-75488e21a0a9.png)](#screenwindow-documentation)
 ## 🖥️ Screen/Window Documentation
  Below will be some documentation for each of the screens with explaining the functionality of each of the components.
