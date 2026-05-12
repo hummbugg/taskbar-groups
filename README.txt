@@ -39,12 +39,12 @@ Installation
 2. Run TaskbarGroups.exe
 
 Runtime Requirement
-------------
+-------------------
+Taskbar Groups targets Microsoft .NET Framework 4.7.2.
 
-Taskbar Groups requires Microsoft .NET Framework 4.7.2 or later.
+Windows 11 normally already includes a newer compatible .NET Framework 4.x runtime, so no separate runtime installation should be needed.
 
-Most modern Windows systems already include a compatible .NET Framework version.
-If the application does not start, install the Microsoft .NET Framework 4.7.2 Runtime:
+If you are using an older or unsupported version of Windows and the app does not start, install the Microsoft .NET Framework 4.7.2 Runtime:
 
 https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net472-web-installer
 
