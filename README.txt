@@ -63,6 +63,8 @@ OPTION 1 (Recommended):
 
 OPTION 2 (If already extracted):
 Run PowerShell and execute:
+If you accidently extract the zip file before unblocking the zip, you will have to delete the extracted folder, unblock the zip and extract the zip again.
+Alternately if you are familiar with PowerShell you can run the command below to unblock the files, just change the path "C:\Path\To\TaskbarGroups" to match the folder you extracted TaskbarGroups into.
 
 Get-ChildItem -Path "C:\Path\To\TaskbarGroups" -Recurse -File | Unblock-File
 
