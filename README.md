@@ -55,6 +55,8 @@ Because this application is distributed as a ZIP downloaded from the internet, W
 6. Run `TaskbarGroups.exe`
 
 ### If already extracted:
+If you accidently extract the zip file before unblocking the zip, you will have to delete the extracted folder, unblock the zip and extract the zip again.
+Alternately if you are familiar with PowerShell you can run the command below to unblock the files, just change the path "C:\Path\To\TaskbarGroups" to match the folder you extracted TaskbarGroups into.
 
 ```powershell
 Get-ChildItem -Path "C:\Path\To\TaskbarGroups" -Recurse -File | Unblock-File
