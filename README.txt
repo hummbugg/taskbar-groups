@@ -113,3 +113,49 @@ Support / Issues
 ----------------
 Please report issues or suggestions here:
 https://github.com/hummbugg/taskbar-groups/issues
+
+Developer Information
+---------------------
+
+Supported Operating Systems
+---------------------------
+Taskbar Groups v1.1.0-unofficial targets Microsoft .NET Framework 4.7.2.
+
+Windows 11 already includes a newer compatible .NET Framework 4.x runtime,
+so no additional runtime installation is normally required for end users.
+
+The project has been tested primarily on:
+- Windows 11
+- Windows 10
+
+Older unsupported versions of Windows may require manual installation of the
+.NET Framework 4.7.2 runtime.
+
+Supported Visual Studio Versions
+--------------------------------
+Because this project remains based on the classic .NET Framework WinForms
+project system, it can still be opened and edited using multiple generations
+of Microsoft Visual Studio, including:
+
+- Visual Studio 2017
+- Visual Studio 2019
+- Visual Studio 2022
+- Visual Studio 2026
+
+This was intentionally preserved to maximize compatibility for developers
+who wish to maintain, enhance, or fork the project without requiring
+migration to newer SDK-style .NET project formats.
+
+Project Dependencies
+--------------------
+The current release uses the following external libraries:
+
+- ChinhDo.Transactions.FileManager.dll
+- Microsoft.WindowsAPICodePack.dll
+- Microsoft.WindowsAPICodePack.Shell.dll
+
+These dependencies are included in the binary release ZIP.
+
+Future releases may reduce or eliminate some external dependencies in favor
+of native .NET implementations while preserving compatibility with classic
+Visual Studio versions and Windows-native deployment.
