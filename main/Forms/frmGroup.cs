@@ -108,6 +108,19 @@ namespace client.Forms
 
             InitializeComponent();
 
+            // ADDED: Initialize allowed image/icon extensions for Edit Group mode.
+            // This matches New Group behavior and prevents drag/drop icon selection from failing.
+            newExt = imageExt.Concat(specialImageExt).ToArray();
+
+            // ADDED: Allow ESC key to close the edit dialog like a standard modal.
+            this.CancelButton = cmdExit;
+
+            // ADDED: Set edit dialog to fixed size for consistent modal behavior.
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+
             // Setting properties
             Category = category;
             Client = client;
