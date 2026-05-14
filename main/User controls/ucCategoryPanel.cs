@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using client.Classes;
@@ -100,9 +100,12 @@ namespace client.User_controls
 
         private void cmdDelete_Click(object sender, EventArgs e)
         {
-            frmGroup editGroup = new frmGroup(Client, Category);
-            editGroup.Show();
-            editGroup.BringToFront();
+            // CHANGED: Open Edit Group as a modal dialog.
+            // This prevents multiple Edit Group windows from being created.
+            using (frmGroup editGroup = new frmGroup(Client, Category))
+            {
+                editGroup.ShowDialog(Client);
+            }
         }
 
         public static Bitmap LoadBitmap(string path) // needed to access img without occupying read/write
